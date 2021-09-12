@@ -4,9 +4,11 @@
   "description": "customer.command-api node.js",
   "main": "src/server.ts",
   "scripts": {
-    "build": "tsc",
+    "build-ts": "tsc",
+    "build": "npm run clean && npm run build-ts",
     "start": "nodemon",
     "inspect": "nodemon --inspect src/server.ts",
+    "clean": "rimraf ./dist",
     "test": "jest",
     "lint": "npm run lint:js ",
     "lint:eslint": "eslint --ignore-path .gitignore --ext .ts",
