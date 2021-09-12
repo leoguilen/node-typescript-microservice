@@ -1,0 +1,17 @@
+version: '3.9'
+
+services:
+  customer_command-api:
+    image: ${DOCKER_REGISTRY-}customer_command-api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - mongo
+      - rabbitmq
+
+  mongo:
+    image: mongo
+
+  rabbitmq:
+    image: rabbitmq:3-management

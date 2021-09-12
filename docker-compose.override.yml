@@ -1,0 +1,47 @@
+version: '3.9'
+
+services:
+  customer_command-api:
+    environment:
+      - MONGODB_URI=mongodb://localhost:27017/<database>
+      - REDIS_URI=mongodb://localhost:27017/<database>
+      - LOG_LEVEL=warn
+    ports:
+      - "80"
+      - "443"
+
+  mongo:
+    container_name: mongo
+    restart: always
+    environment:
+      - MONGO_INITDB_DATABASE=VACCINE_SCHEDULES
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=root
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    healthcheck:
+      test: "echo 'db.runCommand(\"ping\").ok'"
+      interval: 5s
+      timeout: 5s
+      retries: 3
+
+  rabbitmq:
+    container_name: rabbitmq
+    restart: always
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+      - CLUSTERED=true
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - rabbit-data:/var/lib/rabbitmq
+
+volumes:
+  mongo-data:
+    external: false
+  rabbit-data:
+    external: false
