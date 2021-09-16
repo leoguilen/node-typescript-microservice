@@ -1,8 +1,8 @@
-import express, { NextFunction, Request, Response } from "express";
+import express, { Request, Response } from "express";
 
 const router = express.Router();
 
-router.get('/healthcheck', async (_req: Request, res: Response, _next: NextFunction) => {
+router.get('/healthcheck', (_req: Request, res: Response) => {
   // todo: checking external dependencies
 
   try {

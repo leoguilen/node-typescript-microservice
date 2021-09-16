@@ -1,3 +1,4 @@
-import healthcheck from './healthcheck'
+import healthcheck from './healthcheckRoutes'
+import customer from './customerRoutes'
 
-export default [healthcheck];
+export default [customer, healthcheck];

@@ -18,10 +18,9 @@ export const api = {
 
 export const mongoDb = {
   connectionString: process.env.MONGODB_URI || '',
-  connectionStringLocal: process.env.MONGODB_URI_LOCAL || '',
 };
 
-export const redis = {
-  connectionString: process.env.REDIS_URI || '',
-  connectionStringLocal: process.env.REDIS_URI_LOCAL || '',
+export const rabbitmq = {
+  connectionString: process.env.RABBITMQ_URI || '',
+  queueName: process.env.RABBITMQ_QUEUENAME || '',
 };
